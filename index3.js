@@ -21,7 +21,7 @@ if(request.method == 'GET'){
   if (uri_parseada.path== "/") {
   fs.readFile('pagina1.html',function(err,datos){
     console.log('Sirviendo pagina 1');
-    response,writeHead(200,"content- Type: text/html");
+    response.writeHead(200,"content- Type: text/html");
     response.write(datos);
     response.end();
     });
@@ -29,7 +29,7 @@ if(request.method == 'GET'){
   if (uri_parseada.path == "/mensaje") {
   fs.readFile('recurso.json',function(err,datos){
     console.log('Sirviendo pagina 1');
-    response,writeHead(200,"content- Type: text/jason");
+    response.writeHead(200,"content- Type: text/json");
     response.write(datos);
     response.end();
   });}
@@ -49,7 +49,7 @@ if (request.method == 'POST'){
   }
 
 }
-
+});
 server.listen( 3000, function( ) {
 console.log( 'Escuchando conexión en el puerto 3000' );
 });
