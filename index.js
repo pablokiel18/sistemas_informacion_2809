@@ -1,23 +1,16 @@
-var Http = require( 'http' );
-var server = Http.createServer(function(request,response){
-    console.log('Alguien entró...1,2,3');
-    console.log(request.url);
-    console.log(request);
-    //console.log(JSON.stringify(request));
-      response.writeHead(200,"Content-Type:text/html");
 
-    if(request.method = 'GET'){
-    response.writeHead(200,"Content-Type:text/html");
-    //response.writeHEAD(404,"Content-Type:text/html");
-    response.write("<style> h1 {color:blue}</style>");
-    response.write("<h1>Hola ICO FES Arag&oacute;n, la mejor carrera.</h1>");
-}else{
-    response.write("No es GET!!!");
-}
-    response.end();
+const express = require('express')
+const app = express()
+const port = 3003
 
-});
+app.get('/', (req, res) => {
+  res.send('Hello World!')
+})
 
-server.listen( 3000, function( ) {
-console.log( 'Escuchando conexión en el puerto 3000' );
-});
+app.post('/',(req,res) => {
+  rest.senf("Metodo Post")
+})
+
+app.listen(port, () => {
+  console.log(`Example app listening at http://localhost:${port}`)
+})
