@@ -4,6 +4,8 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
+var session = require('express-session');
+
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 
@@ -17,6 +19,12 @@ app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
+app.use(session({
+  rasave:false,
+  saveUninitialized:true,
+  secret:'notelodigo'
+}));
+
 app.use(express.static(path.join(__dirname, 'public')));//para etaticos
 //bootstrap
 app.use(express.static(path.join(__dirname, '/node_modules/bootstrap/dist')));
