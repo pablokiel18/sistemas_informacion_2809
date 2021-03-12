@@ -8,6 +8,7 @@ var session = require('express-session');
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
+var almacenRouter= require('./routes/almacen');
 
 var app = express();
 
@@ -19,20 +20,24 @@ app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(session({
-  rasave:false,
-  saveUninitialized:true,
-  secret:'notelodigo'
-}));
 
-app.use(express.static(path.join(__dirname, 'public')));//para etaticos
+//sesiones
+app.use(session({
+  resave:false,
+  saveUninitialized:true,
+  secret:'no te lo digo'
+}));
+app.use(express.static(path.join(__dirname, 'public')));
+
 //bootstrap
 app.use(express.static(path.join(__dirname, '/node_modules/bootstrap/dist')));
 app.use(express.static(path.join(__dirname, '/node_modules/jquery/')));
 app.use(express.static(path.join(__dirname, '/node_modules/popper.js/dist')));
 
+
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
+app.use('/almacen', almacenRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -50,4 +55,4 @@ app.use(function(err, req, res, next) {
   res.render('error');
 });
 
-module.exports = app;
+module.exports = app
